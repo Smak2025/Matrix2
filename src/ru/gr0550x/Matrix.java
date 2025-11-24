@@ -5,10 +5,19 @@ import java.util.Arrays;
 public class Matrix {
     private final int[][] elems;
 
+    /**
+     * Создание нулевой матрицы
+     * @param rows количество строк
+     * @param cols количество столбцов
+     */
     public Matrix(int rows, int cols){
         elems = new int[rows][cols];
     }
 
+    /**
+     * Создание матрицы по двумерному массиву
+     * @param elems двумерный массив, содержащий элементы матрицы
+     */
     public Matrix(int[][] elems){
         this(elems.length, elems[0].length);
         for (int i = 0; i < elems.length; i++){
@@ -16,6 +25,13 @@ public class Matrix {
         }
     }
 
+    /**
+     * Создание матрицы с заданным количеством строк и столбцов,
+     * и элементами
+     * @param rows количество строк в матрице
+     * @param cols количество столбцов в матрице
+     * @param elems элементы матрицы
+     */
     public Matrix(int rows, int cols, int... elems){
         this(rows, cols);
         //TODO: Исправить!
@@ -24,6 +40,11 @@ public class Matrix {
         }
     }
 
+    /**
+     * Получение строкового представления матрицы
+     * @return Строка, элементы матрицы, заключенные в квадратные скобки.
+     * Строки отделяются друг от друга символом \n
+     */
     public String toString(){
         var strResult = new StringBuilder();
         for (var row: elems) {
@@ -37,18 +58,52 @@ public class Matrix {
         return strResult.toString();
     }
 
+    /**
+     * Получение количества строк в матрице
+     * @return количество строк в матрице
+     */
     public int getRows(){
         return elems.length;
     }
 
+    /**
+     * Получение количества столбцов в матрице
+     * @return количество столбцов в матрице
+     */
     public int getColumns(){
         return elems[0].length;
     }
 
+    /**
+     * Получение массива, содержащего элементы на главной или побочной диагонали матрицы.
+     * @param type тип диагонали. Может принимать значение {@link DiagonalType#MAIN} для
+     *             получения элементов главной диагонали или {@link DiagonalType#SIDE}, для
+     *             получения элементов побочной диагонали
+     * @return массив значений элементов на указанной диагонали
+     * @see DiagonalType
+     */
     public int[] getDiagonal(DiagonalType type){
         return getDiagonal(type, DiagonalPosition.MIDDLE, 0);
     }
 
+    /**
+     * Получение массива, содержащего элементы на одной из диагоналей матрицы
+     * @param type тип диагонали (может быть {@link DiagonalType#MAIN} или {@link DiagonalType#SIDE})
+     * @param pos позиция диагонали (может быть
+     *              {@link DiagonalPosition#UPPER},
+     *              {@link DiagonalPosition#LOWER},
+     *              {@link DiagonalPosition#MIDDLE})
+     * @param num номер диагонали по порядку
+     *            {@link DiagonalPosition#MIDDLE MIDDLE} диагональ всегда имеет номер =0,
+     *            Для диагоналей, параллельных главной
+     *            {@link DiagonalType#MAIN MAIN} отсчитывается вниз при {@link DiagonalPosition#LOWER LOWER}
+     *            или вправо при {@link DiagonalPosition#UPPER UPPER} и в обоих случаях должен быть >0.
+     *            Для диагоналей, параллельных побочной
+     *            {@link DiagonalType#SIDE SIDE} num отсчитывается вниз (>0) при {@link DiagonalPosition#LOWER LOWER}
+     *            или влево (<0) при {@link DiagonalPosition#UPPER UPPER}
+     * @return массив значений элементов на указанной диагонали
+     * @see DiagonalPosition
+     */
     public int[] getDiagonal(DiagonalType type, DiagonalPosition pos, int num){
         var count = getRows() - Math.abs(num);
         var result = new int[count];
