@@ -14,7 +14,9 @@ public class Main {
         System.out.println(Arrays.toString(m3.getDiagonal(DiagonalType.SIDE)));
         System.out.println(Arrays.toString(m3.getDiagonal(DiagonalType.MAIN, DiagonalPosition.UPPER, 1)));
         System.out.println(Arrays.toString(m3.getDiagonal(DiagonalType.MAIN, DiagonalPosition.LOWER, 2)));
+        //TODO: Требуется отладка
         System.out.println(Arrays.toString(m3.getDiagonal(DiagonalType.SIDE, DiagonalPosition.UPPER, -1)));
+        //TODO: Требуется отладка
         System.out.println(Arrays.toString(m3.getDiagonal(DiagonalType.SIDE, DiagonalPosition.LOWER, 2)));
     }
 }
