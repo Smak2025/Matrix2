@@ -93,14 +93,14 @@ public class Matrix {
      *              {@link DiagonalPosition#UPPER},
      *              {@link DiagonalPosition#LOWER},
      *              {@link DiagonalPosition#MIDDLE})
-     * @param num номер диагонали по порядку
+     * @param num номер диагонали по порядку.
      *            {@link DiagonalPosition#MIDDLE MIDDLE} диагональ всегда имеет номер =0,
      *            Для диагоналей, параллельных главной
-     *            {@link DiagonalType#MAIN MAIN} отсчитывается вниз при {@link DiagonalPosition#LOWER LOWER}
-     *            или вправо при {@link DiagonalPosition#UPPER UPPER} и в обоих случаях должен быть >0.
+     *            {@link DiagonalType#MAIN MAIN}, num>0 отсчитывается вниз при {@link DiagonalPosition#LOWER LOWER}
+     *            или вправо (num>0) при {@link DiagonalPosition#UPPER UPPER}.
      *            Для диагоналей, параллельных побочной
-     *            {@link DiagonalType#SIDE SIDE} num отсчитывается вниз (>0) при {@link DiagonalPosition#LOWER LOWER}
-     *            или влево (<0) при {@link DiagonalPosition#UPPER UPPER}
+     *            {@link DiagonalType#SIDE SIDE} num>0 отсчитывается вниз при {@link DiagonalPosition#LOWER LOWER}
+     *            или влево (num<0) при {@link DiagonalPosition#UPPER UPPER}
      * @return массив значений элементов на указанной диагонали
      * @see DiagonalPosition
      */
