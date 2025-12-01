@@ -32,9 +32,11 @@ public class Matrix {
      * @param cols количество столбцов в матрице
      * @param elems элементы матрицы
      */
-    public Matrix(int rows, int cols, int... elems){
+    public Matrix(int rows, int cols, int... elems) throws IllegalArgumentException{
         this(rows, cols);
-        //TODO: Исправить!
+        if (elems.length < rows * cols){
+            throw new IllegalArgumentException("Недостаточное количество элементов для матрицы указанного размера");
+        }
         for (int i = 0; i < rows; i++){
             this.elems[i] = Arrays.copyOfRange(elems, i * cols, (i + 1) * cols);
         }
@@ -82,7 +84,7 @@ public class Matrix {
      * @return массив значений элементов на указанной диагонали
      * @see DiagonalType
      */
-    public int[] getDiagonal(DiagonalType type){
+    public int[] getDiagonal(DiagonalType type) throws Exception{
         return getDiagonal(type, DiagonalPosition.MIDDLE, 0);
     }
 
@@ -104,7 +106,10 @@ public class Matrix {
      * @return массив значений элементов на указанной диагонали
      * @see DiagonalPosition
      */
-    public int[] getDiagonal(DiagonalType type, DiagonalPosition pos, int num){
+    public int[] getDiagonal(DiagonalType type, DiagonalPosition pos, int num) throws Exception {
+        if (getRows() != getColumns()){
+            throw new Exception("Матрица должна быть квадратной");
+        }
         var count = getRows() - Math.abs(num);
         var result = new int[count];
         for (int i = 0; i < count; i++) {
